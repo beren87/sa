@@ -33,4 +33,11 @@ public class ClientService {
         Optional <Client> optionalClient = this.clientRepository.findById(id);
         return optionalClient.orElse(null);
     }
+    public Client LireOuCreer(Client clientAcreer){
+        Client clientDansLaBdd = this.clientRepository.findByEmail(clientAcreer.getEmail());
+        if(clientDansLaBdd == null){
+            clientDansLaBdd = this.clientRepository.save(clientAcreer);
+        }
+        return clientDansLaBdd;
+    }
 }
